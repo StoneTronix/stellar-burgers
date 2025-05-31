@@ -14,7 +14,6 @@ export const ConstructorPage: FC = () => {
     dispatch(fetchBurgerIngredients());
   }, []);
 
-  /** TODO: взять переменную из стора */
   const isIngredientsLoading = useSelector(
     (state) => state.burgerIngredients.status == 'loading'
   );
