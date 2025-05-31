@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { TIngredient, TOrder } from '../../utils/types';
 import { orderBurgerApi } from '@api';
 
 export const postOrder = createAsyncThunk(
   'burgerConstructor/postOrder',
-  async (data: string[] ) => {
+  async (data: string[]) => {
     console.log(1);
     return await orderBurgerApi(data);
   }
-)
+);
 
 type ConstructorState = {
   constructorItems: {
@@ -36,17 +37,27 @@ export const burgerConstructorSlice = createSlice({
       state.constructorItems.bun = action.payload;
     },
     addIngredient(state, action: PayloadAction<TIngredient>) {
-      state.constructorItems.ingredients = [...state.constructorItems.ingredients, action.payload];
+      state.constructorItems.ingredients = [
+        ...state.constructorItems.ingredients,
+        action.payload
+      ];
     },
     removeIngredient(state, action: PayloadAction<number>) {
-      state.constructorItems.ingredients = state.constructorItems.ingredients.filter(
-        (_, i) => i != action.payload
-      );
+      state.constructorItems.ingredients =
+        state.constructorItems.ingredients.filter(
+          (_, i) => i != action.payload
+        );
     },
-    moveIngredient(state, action: PayloadAction<{fromIndex: number, toIndex: number}>) {
+    moveIngredient(
+      state,
+      action: PayloadAction<{ fromIndex: number; toIndex: number }>
+    ) {
       const index1 = action.payload.fromIndex;
       const index2 = action.payload.toIndex;
-      [state.constructorItems.ingredients[index1], state.constructorItems.ingredients[index2]] = [
+      [
+        state.constructorItems.ingredients[index1],
+        state.constructorItems.ingredients[index2]
+      ] = [
         state.constructorItems.ingredients[index2],
         state.constructorItems.ingredients[index1]
       ];
@@ -62,17 +73,17 @@ export const burgerConstructorSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(postOrder.pending, (state) => {
-      state.orderRequest = true;
-    })
-    .addCase(postOrder.fulfilled, (state, action) => {
-      state.orderRequest = false;
-      state.orderModalData = action.payload.order;
-    })
+      .addCase(postOrder.pending, (state) => {
+        state.orderRequest = true;
+      })
+      .addCase(postOrder.fulfilled, (state, action) => {
+        state.orderRequest = false;
+        state.orderModalData = action.payload.order;
+      });
   }
 });
 
-export const { 
+export const {
   updateBun,
   addIngredient,
   removeIngredient,
