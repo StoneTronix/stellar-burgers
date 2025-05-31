@@ -1,5 +1,5 @@
-import { getFeedsApi, TFeedsResponse } from '@api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getFeedsApi, TFeedsResponse } from '@api';
 
 export const fetchOrders = createAsyncThunk<TFeedsResponse, void>(
   'feedSlice/fetchOrders',
