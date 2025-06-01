@@ -10,7 +10,7 @@ describe('Редьюсер слайса feedSlice', () => {
     jest.clearAllMocks();
   });
   
-  it('fetchOrders.pending', () => {
+  it('Ожидание fetchOrders', () => {
     const initialState = feedSlice.getInitialState();
     const action = fetchOrders.pending('requestId');
     const state = feedSlice.reducer(initialState, action);
@@ -19,7 +19,7 @@ describe('Редьюсер слайса feedSlice', () => {
     expect(state.error).toBeNull();
   });
 
-  it('fetchOrders.fulfilled', () => {
+  it('Выполнение fetchOrders', () => {
     const feeds: TFeedsResponse = {
       success: true,
       orders: [
@@ -46,7 +46,7 @@ describe('Редьюсер слайса feedSlice', () => {
     expect(state.error).toBeNull();
   });
 
-  it('fetchOrders.rejected', () => {
+  it('Отказ fetchOrders', () => {
     const initialState = feedSlice.getInitialState();
     const action = fetchOrders.rejected(new Error('Failed to fetch'), 'requestId');
     const state = feedSlice.reducer(initialState, action);

@@ -1,4 +1,4 @@
-import { burgerIngredientsSlice, fetchBurgerIngredients,  } from '../src/services/slices/burgerIngredientsSlice';
+import { burgerIngredientsSlice, fetchBurgerIngredients } from '../src/services/slices/burgerIngredientsSlice';
 import { TIngredient } from '../src/utils/types';
 
 jest.mock('../src/utils/burger-api', () => ({
@@ -10,7 +10,7 @@ describe('Редьюсер слайса burgerIngredientsSlice', () => {
     jest.clearAllMocks();
   });
 
-  it('fetchBurgerIngredients.pending', () => {
+  it('Ожидание fetchBurgerIngredients', () => {
     const initialState = burgerIngredientsSlice.getInitialState();
     const action = fetchBurgerIngredients.pending('requestId');
     const state = burgerIngredientsSlice.reducer(initialState, action);
@@ -19,7 +19,7 @@ describe('Редьюсер слайса burgerIngredientsSlice', () => {
     expect(state.error).toBeNull();
   });
 
-  it('fetchBurgerIngredients.fullfilled', () => {
+  it('Выполнение fetchBurgerIngredients', () => {
     const ingredients: TIngredient[] = [
       {
         _id: '1',
@@ -44,7 +44,7 @@ describe('Редьюсер слайса burgerIngredientsSlice', () => {
     expect(state.error).toBeNull();
   });
 
-  it('fetchBurgerIngredients.rejected', () => {
+  it('Отказ fetchBurgerIngredients', () => {
     const initialState = burgerIngredientsSlice.getInitialState();
     const action = fetchBurgerIngredients.rejected(new Error('Failed to fetch'), 'requestId');
     const state = burgerIngredientsSlice.reducer(initialState, action);

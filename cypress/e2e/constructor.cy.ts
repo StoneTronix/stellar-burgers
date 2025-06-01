@@ -19,7 +19,7 @@ describe('Тестирование burgerConstructor', () => {
     cy.get("[data-cy='burger-constructor-element']").should("be.visible");
     cy.get("[data-cy='burger-constructor-element-fullwidth']").should("be.visible");
   });
-  describe('Открытие модалок и закрытие', () => {
+  describe('Открытие и закрытие модалок', () => {
     beforeEach(() => {
       openModal();
       cy.checkModalViibility(true);

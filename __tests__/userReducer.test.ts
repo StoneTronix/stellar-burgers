@@ -38,8 +38,8 @@ describe('Тестирование userSlice', () => {
       refreshToken: 'refresh-token',
     };
 
-    describe('loginUser', () => {
-        it('loginUser.pending', () => {
+    describe('Тестирование loginUser', () => {
+        it('Ожидание loginUser', () => {
           const initialState = userSlice.getInitialState();
           const action = loginUser.pending('requestId', loginData);
           const state = userSlice.reducer(initialState, action);
@@ -49,7 +49,7 @@ describe('Тестирование userSlice', () => {
           expect(state.user).toBeNull();
         });
     
-        it('loginUser.fulfilled', async () => {
+        it('Выполнение loginUser', async () => {
           const loginUserApi = require('../src/utils/burger-api').loginUserApi;
           loginUserApi.mockResolvedValue(apiResponse);
   
@@ -63,7 +63,7 @@ describe('Тестирование userSlice', () => {
           expect(state.isAuthChecked).toBe(true);
         });
 
-        it('loginUser.rejected', () => {
+        it('Отказ loginUser', () => {
           const initialState = userSlice.getInitialState();
           const action = loginUser.rejected(new Error('Invalid credentials'), 'requestId', loginData);
           const state = userSlice.reducer(initialState, action);
@@ -74,7 +74,7 @@ describe('Тестирование userSlice', () => {
         });
     });
 
-    describe('logoutUser', () => {
+    describe('Тестирование logoutUser', () => {
       it('logoutUser.fulfilled', () => {
         const logoutApi = require('@api').logoutApi;
         logoutApi.mockResolvedValue({ success: true });
@@ -89,8 +89,8 @@ describe('Тестирование userSlice', () => {
       });
     });
 
-    describe('getUser', () => {
-      it('getUser.pending', () => {
+    describe('Тестирование getUser', () => {
+      it('Ожидание getUser', () => {
         const initialState = userSlice.getInitialState();
         const action = getUser.pending('requestId');
         const state = userSlice.reducer(initialState, action);
@@ -98,7 +98,7 @@ describe('Тестирование userSlice', () => {
         expect(state.isLoading).toBe(true);
       });
   
-      it('getUser.fulfilled', () => {
+      it('Выполнение getUser', () => {
         const getUserApi = require('@api').getUserApi;
         getUserApi.mockResolvedValue({ success: true, user });
   
@@ -111,7 +111,7 @@ describe('Тестирование userSlice', () => {
         expect(state.isAuthChecked).toBe(true);
       });
   
-      it('getUser.rejected', () => {
+      it('Отказ getUser', () => {
         const getUserApi = require('@api').getUserApi;
         getUserApi.mockRejectedValue(new Error('Failed to fetch user'));
   
@@ -124,13 +124,17 @@ describe('Тестирование userSlice', () => {
       });
     });
 
-    describe('updateUser', () => {
-      it('updateUser.fulfilled', () => {
+    describe('Тестирование updateUser', () => {
+      it('Выполнение updateUser', () => {
         const updateUserApi = require('@api').updateUserApi;
         updateUserApi.mockResolvedValue({ success: true, user: { ...user, name: 'Updated User' } });
   
         const initialState = userSlice.getInitialState();
-        const action = updateUser.fulfilled({ success: true, user: { ...user, name: 'Updated User' } }, 'requestId', { name: 'Updated User' });
+        const action = updateUser.fulfilled(
+          { success: true, user: { ...user, name: 'Updated User' } }, 
+          'requestId', 
+          { name: 'Updated User' }
+        );
         const state = userSlice.reducer(initialState, action);
   
         expect(state.user).toEqual({ ...user, name: 'Updated User' });
