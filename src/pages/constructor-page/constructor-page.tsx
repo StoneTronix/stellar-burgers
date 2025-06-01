@@ -3,8 +3,8 @@ import { FC, useEffect } from 'react';
 import { BurgerIngredients, BurgerConstructor } from '../../components';
 import { AppDispatch, useDispatch, useSelector } from '../../services/store';
 import { fetchBurgerIngredients } from '../../services/slices/burgerIngredientsSlice';
-import { Preloader } from '../../components/ui';
 
+import { Preloader } from '../../components/ui';
 import styles from './constructor-page.module.css';
 
 export const ConstructorPage: FC = () => {

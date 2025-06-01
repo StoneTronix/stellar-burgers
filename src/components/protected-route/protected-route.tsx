@@ -4,10 +4,10 @@ import { Navigate } from 'react-router-dom';
 import { Preloader } from '@ui';
 import { useSelector } from '../../services/store';
 
-type ProtectedRouteProps = {
+interface ProtectedRouteProps {
   type: 'protected' | 'login';
   children: React.ReactElement;
-};
+}
 
 export const ProtectedRoute: FC<ProtectedRouteProps> = ({
   type,

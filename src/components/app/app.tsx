@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { AppHeader, Modal, OrderInfo, IngredientDetails } from '@components';
@@ -13,12 +14,21 @@ import {
   NotFound404
 } from '@pages';
 import { ProtectedRoute } from '@components';
+import { AppDispatch, useDispatch, useSelector } from '../../services/store';
+import { getUser } from '../../services/slices/userSlice';
 
 import styles from './app.module.css';
 import '../../index.css';
 
 const App = () => {
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { isAuthChecked } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!isAuthChecked) dispatch(getUser());
+  }, []);
 
   return (
     <div className={styles.app}>
@@ -57,7 +67,6 @@ const App = () => {
 
         <Route path='/ingredients/:id' element={<ConstructorPage />} />
         <Route path='/feed/:number' element={<Feed />} />
-
         <Route
           path='/profile/orders/:number'
           element={
@@ -66,10 +75,17 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+      </Routes>
+      <Routes>
         <Route
           path='/feed/:number'
           element={
-            <Modal title={''} onClose={() => {}}>
+            <Modal
+              title={''}
+              onClose={() => {
+                navigate('/feed');
+              }}
+            >
               <OrderInfo type='feed' />
             </Modal>
           }
@@ -77,7 +93,12 @@ const App = () => {
         <Route
           path='/ingredients/:id'
           element={
-            <Modal title='Детали ингредиента' onClose={() => {}}>
+            <Modal
+              title='Детали ингредиента'
+              onClose={() => {
+                navigate('/');
+              }}
+            >
               <IngredientDetails />
             </Modal>
           }

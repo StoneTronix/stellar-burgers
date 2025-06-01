@@ -1,4 +1,5 @@
-import { FC, memo } from 'react';
+import { FC, useRef, memo } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 
 import { BurgerConstructorElementProps } from './type';
 import { AppDispatch, useDispatch } from '../../services/store';
@@ -23,6 +24,8 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
     const handleClose = () => {
       dispatch(removeIngredient(index));
     };
+
+    const ref = useRef<HTMLLIElement>(null);
 
     return (
       <BurgerConstructorElementUI
