@@ -7,7 +7,7 @@ import { updateUser } from '../../services/slices/userSlice';
 
 export const Profile: FC = () => {
   /** TODO: взять переменную из стора */
-  const dispatch: AppDispatch = useDispatch();  
+  const dispatch: AppDispatch = useDispatch();
   const user = useSelector(
     (state) => state.user.user || { name: '', email: '' }
   );

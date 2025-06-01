@@ -12,8 +12,8 @@ export const Login: FC = () => {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault(); 
-    dispatch(loginUser({email: email, password: password}));
+    e.preventDefault();
+    dispatch(loginUser({ email: email, password: password }));
   };
 
   return (

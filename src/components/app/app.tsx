@@ -76,6 +76,7 @@ const App = () => {
           }
         />
       </Routes>
+
       <Routes>
         <Route
           path='/feed/:number'

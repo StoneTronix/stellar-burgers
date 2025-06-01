@@ -11,8 +11,8 @@ import { BurgerIngredientUI } from '@ui';
 
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
   ({ ingredient, count }) => {
-    const dispatch: AppDispatch = useDispatch();
     const location = useLocation();
+    const dispatch: AppDispatch = useDispatch();
 
     const handleAdd = () => {
       if (ingredient.type == 'bun') dispatch(updateBun(ingredient));
