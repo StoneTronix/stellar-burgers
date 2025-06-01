@@ -1,5 +1,5 @@
-import { getFeedsApi, TFeedsResponse } from "@api";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getFeedsApi, TFeedsResponse } from '@api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchOrders = createAsyncThunk<TFeedsResponse, void>(
   'feedSlice/fetchOrders',
@@ -7,17 +7,16 @@ export const fetchOrders = createAsyncThunk<TFeedsResponse, void>(
 );
 
 type TFeedState = {
-    feeds: TFeedsResponse | null;
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error: string | null;
+  feeds: TFeedsResponse | null;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
 };
 
 const initialState: TFeedState = {
-    feeds: null,
-    status: 'idle',
-    error: null
+  feeds: null,
+  status: 'idle',
+  error: null
 };
-
 
 export const feedSlice = createSlice({
   name: 'feedSlice',

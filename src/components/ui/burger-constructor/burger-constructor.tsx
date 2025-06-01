@@ -20,7 +20,10 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
 }) => (
   <section className={styles.burger_constructor}>
     {constructorItems.bun ? (
-      <div data-cy='burger-constructor-element' className={`${styles.element} mb-4 mr-4`}>
+      <div
+        data-cy='burger-constructor-element'
+        className={`${styles.element} mb-4 mr-4`}
+      >
         <ConstructorElement
           type='top'
           isLocked
@@ -38,7 +41,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       </div>
     )}
     <ul className={styles.elements}>
-      {constructorItems.ingredients.length > 0 ? (        
+      {constructorItems.ingredients.length > 0 ? (
         constructorItems.ingredients.map(
           (item: TConstructorIngredient, index: number) => (
             <BurgerConstructorElement
@@ -48,7 +51,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
               key={`${index}_ ${item._id}`}
             />
           )
-        )        
+        )
       ) : (
         <div
           data-cy='noBuns'
@@ -59,7 +62,10 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       )}
     </ul>
     {constructorItems.bun ? (
-      <div data-cy='burger-constructor-element' className={`${styles.element} mt-4 mr-4`}>
+      <div
+        data-cy='burger-constructor-element'
+        className={`${styles.element} mt-4 mr-4`}
+      >
         <ConstructorElement
           type='bottom'
           isLocked
