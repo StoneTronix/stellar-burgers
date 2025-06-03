@@ -1,14 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { TIngredient, TOrder } from '../../utils/types';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { orderBurgerApi } from '@api';
 
 export const postOrder = createAsyncThunk(
   'burgerConstructor/postOrder',
-  async (data: string[]) => {
-    console.log(1);
-    return await orderBurgerApi(data);
-  }
+  async (data: string[]) => await orderBurgerApi(data)
 );
 
 type ConstructorState = {

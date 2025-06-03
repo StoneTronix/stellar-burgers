@@ -1,4 +1,5 @@
 import {
+  getOrdersApi,
   getUserApi,
   loginUserApi,
   logoutApi,
@@ -45,14 +46,7 @@ export const logoutUser = createAsyncThunk(
 
 export const getUser = createAsyncThunk(
   'user/getUser',
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await getUserApi();
-      return res;
-    } catch (err) {
-      rejectWithValue({});
-    }
-  }
+  async () => await getUserApi()
 );
 
 export const updateUser = createAsyncThunk(
